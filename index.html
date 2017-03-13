@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="prism.css">
+	<link rel="stylesheet" href="codeflask.css">
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="sitconpuzzle.js"></script>
+	<script src="prism.js"></script>
+	<script src="codeflask.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet">
+	<script>
+	$(function(){
+		var flask = new CodeFlask;
+		flask.run('#editor', {language: 'python', rtl: false});
+		flask.onUpdate(function(code) {
+		    parse();
+		});
+	});
+	</script>
+	<style>
+		body {
+			height: 100%;
+		}
+		#editor {
+			font-family: 'Source Code Pro', monospace;
+		    min-height:250px;
+		    height: auto;
+		    position:relative;
+		 }
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<div id="editor" data-language="python" class="col-md-9 col-sm-12" style="">print 'Hello World'</div>
+			<div class="col-md-3 col-sm-12">
+				<h3>Operator</h3>
+				<table class="table" data-cat="operator"></table>
+				<h3>Keyword</h3>
+				<table class="table" data-cat="keyword"></table>
+				<h3>Number</h3>
+				<table class="table" data-cat="number"></table>
+				<h3>Variable</h3>
+				<table class="table" data-cat="variable"></table>
+			</div>
+		</div>
+	</div>
+	
+</body>
+</html>
