@@ -154,7 +154,12 @@ function render_table(){
 		    console.log(key + " -> " + used['number'][key]);
 		}
 	}
-	$('[data-cat=number]').append('<tr class="active"><td>Total</td><td><b>'+number_total+'</b></td></tr>');
+	//$('[data-cat=number]').append('<tr class="active"><td>Total</td><td><b>'+number_total+'</b></td></tr>');
+	if(number_total > 0){
+		$('[data-cat=number]').append('<tr class="active"><td>Total</td><td><b>1</b>（一張常數可用無限多次）</td></tr>');
+	}else{
+		$('[data-cat=number]').append('<tr class="active"><td>Total</td><td><b>0</b></td></tr>');
+	}
 
 	var variable_total=0;
 	for (var key in used['variable']) {
