@@ -1,5 +1,27 @@
 /* Additional Code for SITCON puzzle */
-used = {}
+used = {
+	'operator': {
+		"+" : 0,
+		"-" : 0,
+		"*" : 0,
+		"/" : 0,
+		"=" : 0,
+		"==" : 0,
+		"!=" : 0,
+		">" : 0,
+		"<" : 0
+	},
+	'keyword': {
+		'while': 0,
+		'if': 0
+	},
+	'number': {
+
+	},
+	'variable': {
+
+	}
+}
 
 function parse(){
 	//Do the styling
@@ -39,7 +61,6 @@ function parse(){
 
 function handle_negative_number(){
 	$('.operator').each(function(){
-		console.log($(this));
 		if($(this).text().trim() == '-' && $(this).next().hasClass('number')){
 			var curdom = this;
 			while(curdom != curdom.parentNode.firstElementChild){ //check if is the first child
@@ -114,13 +135,11 @@ function render_table(){
 	for (var key in used['operator']) {
 		if (used['operator'].hasOwnProperty(key) && used['operator'][key] > 0) {
 			$('[data-cat=operator]').append('<tr><td>'+key+'</td><td><b>'+used['operator'][key]+'</b></td></tr>');
-		    console.log(key + " -> " + used['operator'][key]);
 		}
 	}
 	for (var key in used['keyword']) {
 		if (used['keyword'].hasOwnProperty(key) && used['keyword'][key] > 0) {
 			$('[data-cat=keyword]').append('<tr><td>'+key+'</td><td><b>'+used['keyword'][key]+'</b></td></tr>');
-		    console.log(key + " -> " + used['keyword'][key]);
 		}
 	}
 
@@ -129,7 +148,6 @@ function render_table(){
 		if (used['number'].hasOwnProperty(key) && used['number'][key] > 0) {
 			$('[data-cat=number]').append('<tr><td>'+key+'</td><td><b>'+used['number'][key]+'</b></td></tr>');
 			number_total ++;
-		    console.log(key + " -> " + used['number'][key]);
 		}
 	}
 	//$('[data-cat=number]').append('<tr class="active"><td>Total</td><td><b>'+number_total+'</b></td></tr>');
@@ -144,7 +162,6 @@ function render_table(){
 		if (used['variable'].hasOwnProperty(key) && used['variable'][key] > 0) {
 			$('[data-cat=variable]').append('<tr><td>'+key+'</td><td><b>'+used['variable'][key]+'</b></td></tr>');
 			variable_total ++;
-		    console.log(key + " -> " + used['variable'][key]);
 		}
 	}
 	$('[data-cat=variable]').append('<tr class="active"><td>Total</td><td><b>'+variable_total+'</b></td></tr>');
