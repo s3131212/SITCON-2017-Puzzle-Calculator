@@ -51,29 +51,43 @@ function parse(){
 	}
 	Prism.highlightAll();
 	calculate_used_variable();
+	handle_negative_number();
 
 	console.table(used);
 
 	render_table();
 }
 
-//Wait to be fixed
-//See here: https://github.com/PrismJS/prism/issues/1110
-// https://github.com/PrismJS/prism/issues/810
 function handle_negative_number(){
-	$('code').children().each(function(){
+	$('.operator').each(function(){
 		console.log($(this));
-		if($(this).text().trim() == '-'){
-			if($(this).next().hasClass('number') && ($(this).prev().text() == '=' || $(this).prev().text() == '[')){ //check if is variable
-				$(this).next().text('-' + $(this).next().text());
+		if($(this).text().trim() == '-' && $(this).next().hasClass('number')){
+			var curdom = this;
+			while(curdom != curdom.parentNode.firstElementChild){ //check if is the first child
+				if($.trim(curdom.previousSibling.textContent) != ''){ //Check if is empty
+					if($.trim(curdom.previousSibling.textContent) == "="
+						|| $.trim(curdom.previousSibling.textContent) == "["
+						|| $.trim(curdom.previousSibling.textContent) == "("
+						|| $.trim(curdom.previousSibling.textContent) == ","){ // Check if is negative number
+						
+						used['number'][$(this).next().text()] --;
+						if('-' + $(this).next().text() in used['number']){
+							used['number']['-' + $(this).next().text()] ++;
+						}else{
+							used['number']['-' + $(this).next().text()] = 1;
+						}
 
-				used['number'][$(this).next().text()] --;
-				if('-' + $(this).next().text() in used['number']){
-					used['number']['-' + $(this).next().text()] ++;
+						used['operator']['-']--;
+
+						$(this).next().text('-' + $(this).next().text());
+
+						$(this).remove();
+					}
+
+					break;
 				}else{
-					used['number']['-' + $(this).next().text()] = 1;
+					curdom = curdom.previousSibling;
 				}
-				$(this).remove();
 			}
 		}
 	});
