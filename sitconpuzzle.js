@@ -1,27 +1,5 @@
 /* Additional Code for SITCON puzzle */
-used = {
-	'operator': {
-		"+" : 0,
-		"-" : 0,
-		"*" : 0,
-		"/" : 0,
-		"=" : 0,
-		"==" : 0,
-		"!=" : 0,
-		">" : 0,
-		"<" : 0
-	},
-	'keyword': {
-		'while': 0,
-		'if': 0
-	},
-	'number': {
-
-	},
-	'variable': {
-
-	}
-}
+used = {}
 
 function parse(){
 	//Do the styling
@@ -40,7 +18,8 @@ function parse(){
 			"<" : 0
 		},
 		'keyword': {
-			'while': 0
+			'while': 0,
+			'if': 0
 		},
 		'number': {
 
@@ -94,7 +73,6 @@ function handle_negative_number(){
 }
 
 function calculate_used(content, type){
-
 	if(type != 'operator' && type != 'keyword' && type != 'number')
 		return false;
 
