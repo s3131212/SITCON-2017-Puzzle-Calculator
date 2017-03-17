@@ -166,6 +166,14 @@ function render_table(){
 	}
 	$('[data-cat=variable]').append('<tr class="active"><td>Total</td><td><b>'+variable_total+'</b></td></tr>');
 }
+function loaddata(){
+	if(window.localStorage["data"]){
+		$('#editor').text(window.localStorage["data"]);
+	}
+}
+function savedata(code){
+	window.localStorage["data"] = code;
+}
 
 
 /** Function that count occurrences of a substring in a string;

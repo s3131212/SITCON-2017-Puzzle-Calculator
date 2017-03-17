@@ -14,9 +14,12 @@
 	<link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet">
 	<script>
 	$(function(){
+		loaddata();
+		
 		var flask = new CodeFlask;
 		flask.run('#editor', {language: 'python', rtl: false});
 		flask.onUpdate(function(code) {
+			savedata(code);
 		    parse();
 		});
 	});
