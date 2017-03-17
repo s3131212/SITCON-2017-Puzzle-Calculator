@@ -15,9 +15,9 @@
 	<script>
 	$(function(){
 		loaddata();
-		
 		var flask = new CodeFlask;
 		flask.run('#editor', {language: 'python', rtl: false});
+		parse();
 		flask.onUpdate(function(code) {
 			savedata(code);
 		    parse();
